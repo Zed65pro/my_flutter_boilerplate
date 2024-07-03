@@ -3,8 +3,8 @@ import '../../constants/app_colors.dart';
 import '../../constants/font_sizes.dart';
 
 /* -- Light & Dark Elevated Button Themes -- */
-class TElevatedButtonTheme {
-  TElevatedButtonTheme._(); //To avoid creating instances
+class MyElevatedButtonTheme {
+  MyElevatedButtonTheme._(); //To avoid creating instances
 
 
   /* -- Light Theme -- */

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 
-class TBottomSheetTheme {
-  TBottomSheetTheme._();
+class MyBottomSheetTheme {
+  MyBottomSheetTheme._();
 
   static BottomSheetThemeData lightBottomSheetTheme = BottomSheetThemeData(
     showDragHandle: true,
