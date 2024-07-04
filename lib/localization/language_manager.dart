@@ -1,32 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-
-import '../services/local_storage.dart';
+import 'package:flutter/material.dart' show Locale;
 
 class LanguageManager {
-  static final LanguageManager _instance = LanguageManager._internal();
+  LanguageManager._();
 
-  factory LanguageManager() {
-    return _instance;
+  static Future<void> initLocalization() async {
+    await EasyLocalization.ensureInitialized();
+    EasyLocalization.logger.enableBuildModes = []; // Disable EasyLocalization Logging - comment this line to enable
   }
 
-  LanguageManager._internal();
-
-  static Locale currentLanguage(BuildContext context) => EasyLocalization.of(context)!.currentLocale!;
-
-  static void setLanguage(BuildContext context, String language) {
-    final LocalStorage localStorage = LocalStorage();
-    localStorage.write('language', language);
-    EasyLocalization.of(context)!.setLocale(Locale(language));
-  }
-
-  static void getStoredLanguage(context) {
-    final LocalStorage localStorage = LocalStorage();
-    final String? language = localStorage.read('language');
-
-    if (language != null) {
-      Locale locale = Locale(language);
-      EasyLocalization.of(context)!.setLocale(locale);
-    }
+  static EasyLocalization wrapLocalization(final app) {
+    return EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'lib/localization/translations',
+      fallbackLocale: const Locale('en'),
+      child: app,
+    );
   }
 }
