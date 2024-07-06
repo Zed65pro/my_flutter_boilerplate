@@ -1,7 +1,6 @@
+import 'package:boilerplate/features/home/views/home_view.dart';
 import 'package:boilerplate/services/navigation_service.dart';
 import 'package:flutter/material.dart';
-
-import 'home_page.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -22,7 +21,7 @@ class SecondPage extends StatelessWidget {
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(NavigationService.context).push(
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(builder: (context) => const HomeView()),
                     );
                   },
                   child: const Text('Route to first Page'))

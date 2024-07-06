@@ -1,26 +1,35 @@
 import 'package:boilerplate/localization/language_manager.dart';
 import 'package:boilerplate/services/connectivity.dart';
+import 'package:boilerplate/services/local_storage.dart';
 import 'package:boilerplate/services/navigation_service.dart';
 import 'package:boilerplate/themes/theme.dart';
+import 'package:boilerplate/themes/theme_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'constants/app_strings.dart';
-import 'home_page.dart';
+import 'features/home/views/home_view.dart';
 
 // Navigation key for context
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await LanguageManager.initLocalization();
 
-  // Initialize Connectivity Service - Monitor internet state
-  ConnectivityService(navigatorKey);
 
-  // Navigation service saves the navigation key, so that context can be accessed easily from anywhere in the project
-  NavigationService.navigatorKey = navigatorKey;
+  await LanguageManager.initLocalization(); // Init Localization
+  await LocalStorage().initGetStorage(); // Init Get Storage
+  ConnectivityService(navigatorKey); // Initialize Connectivity Service - Monitor internet state
+  NavigationService.navigatorKey = navigatorKey; // Navigation service saves the navigation key, so that context can be accessed easily from anywhere in the project
 
-  runApp(LanguageManager.wrapLocalization(const App()));
+  runApp(
+    ChangeNotifierProvider( // For Theme
+      create: (BuildContext context) => ThemeManager(),
+      child: LanguageManager.wrapLocalization(
+        const App()
+      ),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -28,16 +37,17 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeManager = Provider.of<ThemeManager>(context);
     return MaterialApp(
         navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         title: AppStrings.appName,
-        themeMode: ThemeMode.system,
+        themeMode: themeManager.themeMode,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        home: const HomePage());
+        home: const HomeView());
   }
 }

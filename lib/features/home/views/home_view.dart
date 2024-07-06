@@ -1,12 +1,12 @@
-import 'package:boilerplate/second_page.dart';
 import 'package:boilerplate/services/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'features/counter/views/counter_view.dart';
-import 'logging/logger.dart';
+import '../../../common/widgets/custom_switch_theme.dart';
+import '../../../logging/logger.dart';
+import '../../counter/views/counter_view.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,9 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Home"),
+          actions: const [
+            CustomIconSwitch(),
+          ],
         ),
         body: Center(
           child: Column(

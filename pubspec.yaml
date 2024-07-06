@@ -3,13 +3,14 @@ description: "Flutter Boilerplate"
 publish_to: 'none'
 version: 1.0.0+1
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: '>=3.1.5 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
-  get: ^4.6.6
+  flutter_dotenv: ^5.1.0
+  dio: ^5.4.1
   url_launcher: ^6.3.0
   intl: ^0.19.0
   connectivity_plus: ^5.0.2
@@ -23,13 +24,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
 
 flutter:
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - lib/localization/translations/
+    - assets/devImages/
 
 fonts:
  - family: Schyler
@@ -42,3 +44,23 @@ fonts:
      - asset: fonts/TrajanPro.ttf
      - asset: fonts/TrajanPro_Bold.ttf
        weight: 700
+
+# Please insert background.png, logo_wht.png and logo_trs.png inside assets/images to generate assets
+# run command: flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: "AppIcon"
+  image_path: "assets/devImages/logo_white_background.png"
+  min_sdk_android: 24
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/devImages/logo_transparent.png"
+
+#run command: dart run flutter_native_splash:create
+flutter_native_splash:
+  image: assets/devImages/logo_white_backgroundpng
+  image_dark: assets/devImages/logo_dark_background.png
+
+  android_12:
+    image: assets/devImages/logo_transparent.png
+    image_dark: assets/devImages/logo_transparent.png
+  fullscreen: true

@@ -11,6 +11,10 @@ class LocalStorage {
 
   final _storage = GetStorage();
 
+  Future<void> initGetStorage() async {
+    await GetStorage.init();
+  }
+
   Future<void> write<T>(String key, T value) async {
     await _storage.write(key, value);
   }
