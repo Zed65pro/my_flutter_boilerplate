@@ -1,3 +1,4 @@
+import 'package:boilerplate/constants/asset_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,8 @@ class Language {
 
 // Add more languages here
 final List<Language> languages = [
-  Language('en', "english", 'assets/images/english.png'),
-  Language('ar', "العربية", 'assets/images/arabic.png'),
+  Language('en', "English", AppAssets.english),
+  Language('ar', "العربية", AppAssets.arabic),
 ];
 
 class LanguageSwitcher extends StatelessWidget {
