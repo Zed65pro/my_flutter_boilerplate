@@ -1,12 +1,9 @@
 import 'package:get_storage/get_storage.dart';
 
+// SINGLETON CLASS
 class LocalStorage {
   static final LocalStorage _instance = LocalStorage._internal();
-
-  factory LocalStorage() {
-    return _instance;
-  }
-
+  factory LocalStorage() => _instance;
   LocalStorage._internal();
 
   final _storage = GetStorage();
@@ -31,22 +28,3 @@ class LocalStorage {
     await _storage.erase();
   }
 }
-
-
-/// *** *** *** *** *** Example *** *** *** *** *** ///
-
-// LocalStorage localStorage = LocalStorage();
-//
-// // Save data
-// localStorage.saveData('username', 'JohnDoe');
-//
-// // Read data
-// String? username = localStorage.readData<String>('username');
-// print('Username: $username'); // Output: Username: JohnDoe
-//
-// // Remove data
-// localStorage.removeData('username');
-//
-// // Clear all data
-// localStorage.clearAll();
-

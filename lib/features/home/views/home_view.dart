@@ -1,8 +1,9 @@
-import 'package:boilerplate/services/navigation_service.dart';
+import 'package:boilerplate/common/widgets/language_switch.dart';
+import 'package:boilerplate/localization/language_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../../../common/widgets/custom_switch_theme.dart';
-import '../../../logging/logger.dart';
+import '../../../common/widgets/appbar.dart';
+import '../../../common/widgets/theme_switch.dart';
 import '../../counter/views/counter_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,32 +13,26 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Home"),
-          actions: const [
-            CustomIconSwitch(),
-          ],
-        ),
+        appBar: CustomAppBar(title: "welcome".tr()),
         body: Center(
           child: Column(
             children: [
+              const LanguageSwitcher(),
               Center(
                 child: Text(
                   "welcome".tr(),
                   textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
+              const SizedBox(height: 15),
               ElevatedButton(
-                  onPressed: () async {
-                    final String currentLanguage = context.locale.languageCode;
-                    final String switchLanguage = currentLanguage == 'en' ? 'ar' : 'en';
-                    context.setLocale(Locale(switchLanguage));
-                    AppLogger.info(NavigationService.context.locale.languageCode);
-                  },
+                  onPressed: () => LanguageManager.switchLanguage(),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Switch Language"),
                   )),
+              const SizedBox(height: 15),
               ElevatedButton(
                   onPressed: () async {
                     Navigator.of(context).push(

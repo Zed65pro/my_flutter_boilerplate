@@ -2,8 +2,8 @@ import 'package:boilerplate/themes/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CustomIconSwitch extends StatelessWidget {
-  const CustomIconSwitch({super.key});
+class ThemeSwitch extends StatelessWidget {
+  const ThemeSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,6 @@
 {
-  "welcome": "مرحبا بك"
+  "welcome": "مرحبا بك",
+  "counter": "عداد",
+  "increment": "زيادة",
+  "decrement": "نقص"
 }

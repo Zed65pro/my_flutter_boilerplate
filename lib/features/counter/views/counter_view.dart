@@ -1,6 +1,8 @@
-import 'package:boilerplate/features/counter/controllers/counter_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../common/widgets/appbar.dart';
+import '../controllers/counter_controller.dart';
 
 class CounterView extends StatelessWidget {
   const CounterView({super.key});
@@ -9,41 +11,62 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ChangeNotifierProvider(
-        create: (context) => CounterController(),
-        builder: (context, child) => Scaffold(
-          appBar: AppBar(
-            title: const Text("Counter"),
-          ),
-          body: Center(
-            child: Column(
-              children: [
-                const Center(
-                  child: Text('Counter'),
-                ),
-                const SizedBox(height: 15),
-                Consumer<CounterController>(
-                  builder: (context, counter, child) => Text(
-                    'Counter: ${counter.count}',
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                ElevatedButton(
-                    onPressed: () {
-                      Provider.of<CounterController>(context, listen: false).increment();
-                    },
-                    child: const Text('Increment')),
-                const SizedBox(height: 15),
-                ElevatedButton(
-                    onPressed: () {
-                      Provider.of<CounterController>(context, listen: false).decrement();
-                    },
-                    child: const Text('Decrement'))
-              ],
+        create: (_) => CounterController(),
+        child: const CounterContent(),
+      ),
+    );
+  }
+}
+
+class CounterContent extends StatelessWidget {
+  const CounterContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar(title: context.tr('counter')),
+      body: Center(
+        child: Column(
+          children: [
+            Center(
+              child: Text(context.tr('counter')),
             ),
-          ),
+            const SizedBox(height: 15),
+            _buildCounter(),
+            const SizedBox(height: 15),
+            _buildIncrementButton(context),
+            const SizedBox(height: 15),
+            _buildDecrementButton(context),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildCounter() {
+    return Consumer<CounterController>(
+      builder: (context, counter, child) => Text(
+        '${context.tr('counter')}: ${counter.count}',
+        style: const TextStyle(fontSize: 24),
+      ),
+    );
+  }
+
+  Widget _buildDecrementButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Provider.of<CounterController>(context, listen: false).decrement();
+      },
+      child: Text(context.tr('decrement')),
+    );
+  }
+
+  Widget _buildIncrementButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Provider.of<CounterController>(context, listen: false).increment();
+      },
+      child: Text(context.tr('increment')),
     );
   }
 }

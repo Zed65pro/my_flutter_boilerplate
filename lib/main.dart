@@ -1,4 +1,5 @@
 import 'package:boilerplate/localization/language_manager.dart';
+import 'package:boilerplate/services/api_client.dart';
 import 'package:boilerplate/services/connectivity.dart';
 import 'package:boilerplate/services/local_storage.dart';
 import 'package:boilerplate/services/navigation_service.dart';
@@ -6,6 +7,7 @@ import 'package:boilerplate/themes/theme.dart';
 import 'package:boilerplate/themes/theme_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'constants/app_strings.dart';
 import 'features/home/views/home_view.dart';
@@ -16,17 +18,17 @@ final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
+  await dotenv.load(fileName: ".env"); // Init .env file
   await LanguageManager.initLocalization(); // Init Localization
   await LocalStorage().initGetStorage(); // Init Get Storage
-  ConnectivityService(navigatorKey); // Initialize Connectivity Service - Monitor internet state
+  ConnectivityService().setNavigationKey(navigatorKey); // Initialize Connectivity Service - Monitor internet state
   NavigationService.navigatorKey = navigatorKey; // Navigation service saves the navigation key, so that context can be accessed easily from anywhere in the project
+  ApiClient(); // Initialize Api Client
 
   runApp(
-    ChangeNotifierProvider( // For Theme
-      create: (BuildContext context) => ThemeManager(),
-      child: LanguageManager.wrapLocalization(
-        const App()
+    wrapTheme(
+      LanguageManager.wrapLocalization(
+        const App(),
       ),
     ),
   );
@@ -37,14 +39,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeManager = Provider.of<ThemeManager>(context);
     return MaterialApp(
         navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         title: AppStrings.appName,
-        themeMode: themeManager.themeMode,
+        themeMode: Provider.of<ThemeManager>(context).themeMode, // Listens to ThemeManager in this line
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         debugShowCheckedModeBanner: false,

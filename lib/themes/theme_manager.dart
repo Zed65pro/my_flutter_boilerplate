@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../services/local_storage.dart';
 
+// Singleton class
 class ThemeManager extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
-  final LocalStorage localStorage = LocalStorage();
+  static final ThemeManager _instance = ThemeManager._internal();
 
-  ThemeManager() {
+  factory ThemeManager() => _instance;
+
+  ThemeManager._internal() {
     _loadThemeFromPreferences();
   }
+
+  ThemeMode _themeMode = ThemeMode.system;
+  final LocalStorage localStorage = LocalStorage();
 
   ThemeMode get themeMode => _themeMode;
 
@@ -29,4 +35,11 @@ class ThemeManager extends ChangeNotifier {
     bool isDarkMode = _themeMode == ThemeMode.dark ? true : false;
     await localStorage.write<bool>('theme', isDarkMode);
   }
+}
+
+ChangeNotifierProvider wrapTheme(Widget child) {
+  return ChangeNotifierProvider<ThemeManager>(
+    create: (_) => ThemeManager(),
+    child: child,
+  );
 }
