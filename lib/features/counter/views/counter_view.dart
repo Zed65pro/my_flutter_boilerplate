@@ -10,34 +10,19 @@ class CounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ChangeNotifierProvider(
-        create: (_) => CounterController(),
-        child: const CounterContent(),
-      ),
-    );
-  }
-}
-
-class CounterContent extends StatelessWidget {
-  const CounterContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: context.tr('counter')),
-      body: Center(
-        child: Column(
-          children: [
-            Center(
-              child: Text(context.tr('counter')),
-            ),
-            const SizedBox(height: 15),
-            _buildCounter(),
-            const SizedBox(height: 15),
-            _buildIncrementButton(context),
-            const SizedBox(height: 15),
-            _buildDecrementButton(context),
-          ],
+      child: Scaffold(
+        appBar: CustomAppBar(title: context.tr('counter')),
+        body: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 15),
+              _buildCounter(),
+              const SizedBox(height: 15),
+              _buildIncrementButton(context),
+              const SizedBox(height: 15),
+              _buildDecrementButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -47,7 +32,6 @@ class CounterContent extends StatelessWidget {
     return Consumer<CounterController>(
       builder: (context, counter, child) => Text(
         '${context.tr('counter')}: ${counter.count}',
-        style: const TextStyle(fontSize: 24),
       ),
     );
   }

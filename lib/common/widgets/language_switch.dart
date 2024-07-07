@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 class Language {
   final String languageCode;
   final String name;
-  final IconData icon;
+  final String asset;
 
-  Language(this.languageCode, this.name, this.icon);
+  Language(this.languageCode, this.name, this.asset);
 }
 
-// Add more language here
+// Add more languages here
 final List<Language> languages = [
-  Language('en', "english", Icons.language),
-  Language('ar', "العربية", Icons.flag),
+  Language('en', "english", 'assets/images/english.png'),
+  Language('ar', "العربية", 'assets/images/arabic.png'),
 ];
 
 class LanguageSwitcher extends StatelessWidget {
@@ -28,7 +28,7 @@ class LanguageSwitcher extends StatelessWidget {
         value: selectedLanguage,
         icon: const Icon(Icons.arrow_drop_down),
         iconSize: 24,
-        elevation: 16,
+        elevation: 6,
         onChanged: (newVal) {
           if (newVal != null) {
             context.setLocale(Locale(newVal));
@@ -39,8 +39,13 @@ class LanguageSwitcher extends StatelessWidget {
             value: language.languageCode,
             child: Row(
               children: [
-                Icon(language.icon),
-                const SizedBox(width: 8),
+                Image.asset(
+                  language.asset,
+                  width: 24,
+                  height: 24,
+                  // You can adjust width and height as needed
+                ),
+                const SizedBox(width: 2),
                 Text(language.name),
               ],
             ),

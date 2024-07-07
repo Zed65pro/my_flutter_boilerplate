@@ -34,6 +34,7 @@ flutter:
     - .env
     - lib/localization/translations/
     - assets/devImages/
+    - assets/images/
 
 fonts:
  - family: Schyler

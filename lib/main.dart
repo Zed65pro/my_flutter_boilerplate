@@ -1,4 +1,5 @@
 import 'package:boilerplate/localization/language_manager.dart';
+import 'package:boilerplate/routes/routes.dart';
 import 'package:boilerplate/services/api_client.dart';
 import 'package:boilerplate/services/connectivity.dart';
 import 'package:boilerplate/services/local_storage.dart';
@@ -40,15 +41,17 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        navigatorKey: navigatorKey,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        title: AppStrings.appName,
-        themeMode: Provider.of<ThemeManager>(context).themeMode, // Listens to ThemeManager in this line
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        debugShowCheckedModeBanner: false,
-        home: const HomeView());
+      navigatorKey: navigatorKey,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      title: AppStrings.appName,
+      themeMode: Provider.of<ThemeManager>(context).themeMode, // Listens to ThemeManager in this line
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: AppRouter.home,
+    );
   }
 }

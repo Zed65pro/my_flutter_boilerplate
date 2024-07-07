@@ -1,7 +1,5 @@
 import 'package:boilerplate/common/widgets/language_switch.dart';
 import 'package:flutter/material.dart';
-
-import '../../localization/language_manager.dart';
 import 'theme_switch.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -35,15 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: centerTitle,
       backgroundColor: backgroundColor,
-      actions: actions +
-          [
-            const ThemeSwitch(),
-            const LanguageSwitcher()
-            // ElevatedButton(
-            //   onPressed: () => LanguageManager.switchLanguage(),
-            //   child: const Text("Switch Language"),
-            // ),
-          ],
+      actions: actions + [const LanguageSwitcher()],
       leading: leading,
       elevation: elevation,
     );

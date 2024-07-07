@@ -19,7 +19,7 @@ class ThemeSwitch extends StatelessWidget {
         height: 30.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: isDark ? Colors.blueAccent : Colors.yellow,
+          color: isDark ? const Color(0XFFBB3BBF) : Colors.yellow,
         ),
         child: Stack(
           alignment: Alignment.center,
