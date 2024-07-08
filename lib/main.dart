@@ -15,23 +15,19 @@ import 'constants/app_strings.dart';
 // Navigation key for context
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+Future<void> initServices() async {
   await dotenv.load(fileName: ".env"); // Init .env file
   await LanguageManager.initLocalization(); // Init Localization
   await LocalStorage().initGetStorage(); // Init Get Storage
   ConnectivityService().setNavigationKey(navigatorKey); // Initialize Connectivity Service - Monitor internet state
   NavigationService.navigatorKey = navigatorKey; // Navigation service saves the navigation key, so that context can be accessed easily from anywhere in the project
   ApiClient(); // Initialize Api Client
+}
 
-  runApp(
-    wrapTheme(
-      LanguageManager.wrapLocalization(
-        const App(),
-      ),
-    ),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initServices();
+  runApp(wrapTheme(LanguageManager.wrapLocalization(const App())));
 }
 
 class App extends StatelessWidget {
@@ -45,7 +41,7 @@ class App extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       title: AppStrings.appName,
-      themeMode: Provider.of<ThemeManager>(context).themeMode, // Listens to ThemeManager in this line
+      themeMode: Provider.of<ThemeManager>(context).themeMode,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,

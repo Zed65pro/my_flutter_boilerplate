@@ -20,6 +20,7 @@ dependencies:
   easy_localization: ^3.0.7
   provider: ^6.1.2
   path_provider: any
+  firebase_core: ^2.31.1
 
 dev_dependencies:
   flutter_test:

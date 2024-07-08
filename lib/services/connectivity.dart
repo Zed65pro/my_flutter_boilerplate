@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import '../utils/alerts.dart';
-import '../utils/helper_functions.dart';
 
 /// Manages the network connectivity status and provides methods to check and handle connectivity changes.
 /// SINGLETON CLASS
