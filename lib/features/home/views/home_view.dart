@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(height: 15),
               ElevatedButton(
                   onPressed: () async {
-                    Navigator.of(context).pushNamed(AppRouter.counter);
+                    Navigator.of(context).pushNamed(AppRouter.myForm);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

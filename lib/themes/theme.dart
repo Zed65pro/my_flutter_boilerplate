@@ -2,8 +2,13 @@ import 'package:boilerplate/themes/widget_themes/appbar_theme.dart';
 import 'package:boilerplate/themes/widget_themes/bottom_sheet_theme.dart';
 import 'package:boilerplate/themes/widget_themes/checkbox_theme.dart';
 import 'package:boilerplate/themes/widget_themes/chip_theme.dart';
+import 'package:boilerplate/themes/widget_themes/date_picker_theme.dart';
 import 'package:boilerplate/themes/widget_themes/elevated_button_theme.dart';
 import 'package:boilerplate/themes/widget_themes/outlined_button_theme.dart';
+import 'package:boilerplate/themes/widget_themes/radio_theme.dart';
+import 'package:boilerplate/themes/widget_themes/slider_theme.dart';
+import 'package:boilerplate/themes/widget_themes/switch_theme.dart';
+import 'package:boilerplate/themes/widget_themes/text_button.dart';
 import 'package:boilerplate/themes/widget_themes/text_field_theme.dart';
 import 'package:boilerplate/themes/widget_themes/text_theme.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +32,11 @@ class AppTheme {
     elevatedButtonTheme: MyElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: MyOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: MyTextFormFieldTheme.lightInputDecorationTheme,
+    radioTheme: MyRadioTheme.lightRadioTheme,
+    sliderTheme: MySliderTheme.lightSliderTheme,
+    textButtonTheme: MyTextButtonTheme.lightTheme,
+    switchTheme: MySwitchTheme.lightTheme,
+    datePickerTheme: MyDatePickerTheme.lightTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -44,5 +54,10 @@ class AppTheme {
     elevatedButtonTheme: MyElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: MyOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: MyTextFormFieldTheme.darkInputDecorationTheme,
+    radioTheme: MyRadioTheme.darkRadioTheme,
+    sliderTheme: MySliderTheme.darkSliderTheme,
+    textButtonTheme: MyTextButtonTheme.darkTheme,
+    switchTheme: MySwitchTheme.darkTheme,
+    datePickerTheme: MyDatePickerTheme.darkTheme,
   );
 }
