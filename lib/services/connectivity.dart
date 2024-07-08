@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import '../utils/alerts.dart';
 import '../utils/helper_functions.dart';
 
 /// Manages the network connectivity status and provides methods to check and handle connectivity changes.
 /// SINGLETON CLASS
 class ConnectivityService {
   static final ConnectivityService _instance = ConnectivityService._internal();
+
   factory ConnectivityService() => _instance;
 
   ConnectivityService._internal() {
@@ -28,7 +30,7 @@ class ConnectivityService {
     _connectionStatus = result;
     if (_connectionStatus == ConnectivityResult.none) {
       if (navigatorKey != null)
-        HelperFunctions.showAlert("No internet connection", "Internet connection is not available currently", navigatorKey!.currentContext!);
+        Alerts.showAlert(navigatorKey!.currentContext!, message: "Internet connection is not available currently", type: AlertType.ERROR);
     }
   }
 

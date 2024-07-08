@@ -1,3 +1,4 @@
+import 'package:boilerplate/utils/device_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/local_storage.dart';
@@ -30,7 +31,7 @@ class ThemeManager extends ChangeNotifier {
       notifyListeners();
     } else {
       // Necessary for initial boot as _ThemeMode is set to ThemeMode.system
-      final bool isSystemDark = WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
+      final bool isSystemDark = DeviceUtils.currentDeviceBrightness == Brightness.dark;
       _themeMode = isSystemDark ? ThemeMode.dark : ThemeMode.light;
     }
   }

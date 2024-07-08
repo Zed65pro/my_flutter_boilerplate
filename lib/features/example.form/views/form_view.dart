@@ -211,14 +211,14 @@ class _MyFormViewState extends State<MyFormView> {
       }
 
       // Process the form data
-      print('Form submitted');
-      print('Name: $_name');
-      print('Email: $_email');
-      print('Password: $_password');
-      print('Gender: $_gender');
-      print('Hobbies: $_hobbies');
-      print('Date of Birth: $_selectedDate');
-      print('Experience Rating: $_sliderValue');
+      // print('Form submitted');
+      // print('Name: $_name');
+      // print('Email: $_email');
+      // print('Password: $_password');
+      // print('Gender: $_gender');
+      // print('Hobbies: $_hobbies');
+      // print('Date of Birth: $_selectedDate');
+      // print('Experience Rating: $_sliderValue');
     }
   }
 }

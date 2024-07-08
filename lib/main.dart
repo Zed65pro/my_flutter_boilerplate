@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'constants/app_strings.dart';
-import 'features/home/views/home_view.dart';
 
 // Navigation key for context
 final navigatorKey = GlobalKey<NavigatorState>();

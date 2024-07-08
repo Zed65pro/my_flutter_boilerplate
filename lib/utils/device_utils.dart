@@ -88,7 +88,7 @@ class DeviceUtils {
 
   static Future<bool> hasInternetConnection() async {
     try {
-      final result = await InternetAddress.lookup('example.com');
+      final result = await InternetAddress.lookup('https://google.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
@@ -110,6 +110,8 @@ class DeviceUtils {
       throw 'Could not launch $url';
     }
   }
+
+  static Brightness get currentDeviceBrightness => PlatformDispatcher.instance.platformBrightness;
 
 
 // Add more device utility methods as per your specific requirements.

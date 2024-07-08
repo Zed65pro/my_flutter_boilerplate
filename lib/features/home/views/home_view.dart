@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/appbar.dart';
 import '../../../common/widgets/theme_switch.dart';
 import '../../../constants/app_strings.dart';
+import '../../../utils/alerts.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,7 +38,21 @@ class HomeView extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(context.tr(AppStrings.nextPage)),
-                  ))
+                  )),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                  onPressed: () => Alerts.showSnackBar(context, message: 'Shit happens Shit happens ', type: AlertType.SUCCESS),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("snack bar"),
+                  )),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                  onPressed: () => Alerts.showAlert(context, title: 'sadsa',message: 'Shit happens Shit happens ', type: AlertType.SUCCESS),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("dialog 1"),
+                  )),
             ],
           ),
         ),
