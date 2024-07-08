@@ -2,5 +2,6 @@
   "welcome": "مرحبا بك",
   "counter": "عداد",
   "increment": "زيادة",
-  "decrement": "نقص"
+  "decrement": "نقص",
+  "next_page": "الصفحة القادمة"
 }

@@ -1,44 +1,40 @@
 import 'package:boilerplate/common/widgets/language_switch.dart';
+import 'package:boilerplate/constants/asset_strings.dart';
 import 'package:flutter/material.dart';
-import 'theme_switch.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final Color backgroundColor;
-  final Color titleColor;
   final bool centerTitle;
   final List<Widget> actions;
-  final Widget? leading;
-  final double elevation;
-  final double height;
+  final VoidCallback? onBackPressed;
 
   const CustomAppBar({
     super.key,
-    required this.title,
-    this.backgroundColor = Colors.blue,
-    this.titleColor = Colors.white,
-    this.centerTitle = false,
+    this.centerTitle = true,
     this.actions = const <Widget>[],
-    this.leading,
-    this.elevation = 4.0,
-    this.height = kToolbarHeight,
+    this.onBackPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title,
-        style: TextStyle(color: titleColor),
+      title: Image.asset(
+        AppAssets.arabic,
+        height: 30, // Adjust this value to fit your image
+        fit: BoxFit.contain,
       ),
       centerTitle: centerTitle,
-      backgroundColor: backgroundColor,
       actions: actions + [const LanguageSwitcher()],
-      leading: leading,
-      elevation: elevation,
+      leading: Navigator.of(context).canPop()
+          ? IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios,
+        ),
+        onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+      )
+          : null,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => const Size.fromHeight(60);
 }

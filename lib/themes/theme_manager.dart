@@ -28,6 +28,10 @@ class ThemeManager extends ChangeNotifier {
     if (isDarkMode != null) {
       _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
       notifyListeners();
+    } else {
+      // Necessary for initial boot as _ThemeMode is set to ThemeMode.system
+      final bool isSystemDark = WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
+      _themeMode = isSystemDark ? ThemeMode.dark : ThemeMode.light;
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../common/widgets/appbar.dart';
 import '../../../common/widgets/theme_switch.dart';
+import '../../../constants/app_strings.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,7 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(title: "welcome".tr()),
+        appBar: const CustomAppBar(),
         body: Center(
           child: Column(
             children: [
@@ -23,7 +24,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(height: 15),
               Center(
                 child: Text(
-                  "welcome".tr(),
+                  AppStrings.welcome.tr(),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
@@ -33,9 +34,9 @@ class HomeView extends StatelessWidget {
                   onPressed: () async {
                     Navigator.of(context).pushNamed(AppRouter.counter);
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Next page"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(context.tr(AppStrings.nextPage)),
                   ))
             ],
           ),

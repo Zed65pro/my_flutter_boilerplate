@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../common/widgets/appbar.dart';
+import '../../../constants/app_strings.dart';
 import '../controllers/counter_controller.dart';
 
 class CounterView extends StatelessWidget {
@@ -11,7 +12,7 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(title: context.tr('counter')),
+        appBar: const CustomAppBar(),
         body: Center(
           child: Column(
             children: [
@@ -31,7 +32,7 @@ class CounterView extends StatelessWidget {
   Widget _buildCounter() {
     return Consumer<CounterController>(
       builder: (context, counter, child) => Text(
-        '${context.tr('counter')}: ${counter.count}',
+        '${context.tr(AppStrings.counter)}: ${counter.count}',
       ),
     );
   }
@@ -41,7 +42,7 @@ class CounterView extends StatelessWidget {
       onPressed: () {
         Provider.of<CounterController>(context, listen: false).decrement();
       },
-      child: Text(context.tr('decrement')),
+      child: Text(context.tr(AppStrings.decrement)),
     );
   }
 
@@ -50,7 +51,7 @@ class CounterView extends StatelessWidget {
       onPressed: () {
         Provider.of<CounterController>(context, listen: false).increment();
       },
-      child: Text(context.tr('increment')),
+      child: Text(context.tr(AppStrings.increment)),
     );
   }
 }
