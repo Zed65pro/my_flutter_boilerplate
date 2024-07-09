@@ -54,23 +54,23 @@ fonts:
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: "AppIcon"
-  image_path: "assets/devImages/logo_white_background.png"
+  image_path: "assets/devImages/logo.png"
   min_sdk_android: 24
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/devImages/logo_transparent.png"
+  adaptive_icon_foreground: "assets/devImages/logo.png"
 
 #run command: dart run flutter_native_splash:create
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#000000"
-  image: assets/devImages/logo_white_background.png
-  image_dark: assets/devImages/logo_white_background.png
+  image: assets/devImages/logo.png
+  image_dark: assets/devImages/logo.png
   icon_background_color: "#FFFFFF"
   icon_background_color_dark: "#FFFFFF"
 
   android_12:
-    image: assets/devImages/logo_transparent.png
-    image_dark: assets/devImages/logo_transparent.png
+    image: assets/devImages/logo.png
+    image_dark: assets/devImages/logo.png
     color: "#FFFFFF"
     color_dark: "#000000"
     icon_background_color: "#FFFFFF"

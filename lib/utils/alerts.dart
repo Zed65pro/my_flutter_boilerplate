@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/app_colors.dart';
 
 enum AlertType {
+  NORMAL,
   SUCCESS,
   INFO,
   WARNING,
@@ -14,6 +15,8 @@ class Alerts {
 
   static IconData _getAlertIcon(AlertType type) {
     switch (type) {
+      case AlertType.NORMAL:
+        return Icons.near_me;
       case AlertType.SUCCESS:
         return Icons.check_circle;
       case AlertType.INFO:
@@ -29,10 +32,12 @@ class Alerts {
 
   static Color _getAlertColor(AlertType type) {
     switch (type) {
+      case AlertType.NORMAL:
+        return AppColors.primary;
       case AlertType.SUCCESS:
         return AppColors.success;
       case AlertType.INFO:
-        return AppColors.secondary;
+        return AppColors.info;
       case AlertType.WARNING:
         return AppColors.warning;
       case AlertType.ERROR:
@@ -71,7 +76,6 @@ class Alerts {
       builder: (BuildContext context) {
         return AlertDialog(
           title: title != null ? Text(title, style: Theme.of(context).textTheme.headlineMedium) : null,
-          shadowColor: _getAlertColor(type),
           scrollable: true,
           icon: Icon(_getAlertIcon(type), color: _getAlertColor(type), size: 54),
           iconColor: _getAlertColor(type),
