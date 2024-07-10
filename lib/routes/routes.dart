@@ -1,3 +1,4 @@
+import 'package:boilerplate/features/onboarding/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../features/counter/controllers/counter_controller.dart';
@@ -18,6 +19,7 @@ class AppRouter {
   static const String home = '/';
   static const String counter = '/counter';
   static const String myForm = '/my-form';
+  static const String onboarding = '/onboarding';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -27,6 +29,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => withProvider(const CounterView(), () => CounterController()));
       case myForm:
         return MaterialPageRoute(builder: (_) => const MyFormView());
+      case onboarding:
+        return MaterialPageRoute(builder: (_) => const OnboardingView());
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
     }

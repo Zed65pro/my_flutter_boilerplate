@@ -1,6 +1,7 @@
 class AppStrings {
   AppStrings._();
 
+  static const String onBoardingDone = "onBoardingDone";
   static const String appName = "Boilerplate";
   static const String welcome = "welcome";
   static const String increment = "increment";

@@ -41,6 +41,25 @@ class HomeView extends StatelessWidget {
                   )),
               const SizedBox(height: 15),
               ElevatedButton(
+                  onPressed: () async {
+                    Navigator.of(context).pushNamed(AppRouter.counter);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(context.tr(AppStrings.nextPage)),
+                  )),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () async {
+                  Navigator.of(context).pushNamed(AppRouter.onboarding);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("On boarding"),
+                ),
+              ),
+              const SizedBox(height: 15),
+              ElevatedButton(
                   onPressed: () => Alerts.showSnackBar(context, message: 'Shit happens Shit happens ', type: AlertType.NORMAL),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -48,7 +67,7 @@ class HomeView extends StatelessWidget {
                   )),
               const SizedBox(height: 15),
               ElevatedButton(
-                  onPressed: () => Alerts.showAlert(context, title: 'sadsa',message: 'Shit happens Shit happens ', type: AlertType.NORMAL),
+                  onPressed: () => Alerts.showAlert(context, title: 'sadsa', message: 'Shit happens Shit happens ', type: AlertType.NORMAL),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("dialog 1"),

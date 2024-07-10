@@ -27,11 +27,17 @@ Future<void> initServices() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
-  runApp(wrapTheme(LanguageManager.wrapLocalization(const App())));
+
+  // Check if first time entered app
+  final onBoardingDone = await LocalStorage().read(AppStrings.onBoardingDone) ?? false;
+
+  runApp(wrapTheme(LanguageManager.wrapLocalization(App(onBoardingDone: onBoardingDone))));
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, required this.onBoardingDone});
+
+  final bool onBoardingDone;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,7 @@ class App extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.home,
+      initialRoute: onBoardingDone? AppRouter.home : AppRouter.onboarding,
     );
   }
 }

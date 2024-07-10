@@ -4,14 +4,27 @@ import 'package:flutter/material.dart';
 class MyTextButtonTheme {
   MyTextButtonTheme._();
 
-  static TextButtonThemeData lightTheme = const TextButtonThemeData(
+  static TextButtonThemeData lightTheme = TextButtonThemeData(
       style: ButtonStyle(
-    iconColor: WidgetStatePropertyAll(AppColors.darkGrey),
-    foregroundColor: WidgetStatePropertyAll(AppColors.black),
+    backgroundColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.hovered)) {
+        return AppColors.accent;
+      }
+      return AppColors.primary;
+    }),
+    iconColor: const WidgetStatePropertyAll(AppColors.darkGrey),
+    foregroundColor: const WidgetStatePropertyAll(AppColors.black),
   ));
-  static TextButtonThemeData darkTheme = const TextButtonThemeData(
+
+  static TextButtonThemeData darkTheme = TextButtonThemeData(
       style: ButtonStyle(
-    iconColor: WidgetStatePropertyAll(AppColors.darkGrey),
-    foregroundColor: WidgetStatePropertyAll(AppColors.white),
+    backgroundColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.hovered)) {
+        return AppColors.accent;
+      }
+      return AppColors.primary;
+    }),
+    iconColor: const WidgetStatePropertyAll(AppColors.darkGrey),
+    foregroundColor: const WidgetStatePropertyAll(AppColors.white),
   ));
 }
