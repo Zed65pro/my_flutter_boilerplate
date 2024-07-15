@@ -1,21 +1,20 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
-import '../exceptions/api_exception.dart';
+import '../error/api_exception.dart';
 
 enum RequestType { GET, POST, PUT, DELETE }
 
 // SINGLETON CLASS
 class ApiClient {
   static final ApiClient _instance = ApiClient._internal();
+
   factory ApiClient() => _instance;
 
   ApiClient._internal() {
     final options = BaseOptions(
       persistentConnection: true,
-      baseUrl: dotenv.env['BASE_API_URL'] ?? "",
       contentType: 'application/json',
       connectTimeout: const Duration(milliseconds: 10000),
       receiveTimeout: const Duration(milliseconds: 10000),

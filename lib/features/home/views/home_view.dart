@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(),
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(height: 40),
@@ -51,7 +51,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(height: 15),
               ElevatedButton(
                 onPressed: () async {
-                  Navigator.of(context).pushNamed(AppRouter.onboarding);
+                  Navigator.of(context).pushNamed(AppRouter.weather);
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),

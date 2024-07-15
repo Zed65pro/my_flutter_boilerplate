@@ -1,4 +1,5 @@
 import 'package:boilerplate/common/widgets/language_switch.dart';
+import 'package:boilerplate/common/widgets/theme_switch.dart';
 import 'package:boilerplate/constants/asset_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         fit: BoxFit.contain,
       ),
       centerTitle: centerTitle,
-      actions: actions + [const LanguageSwitcher()],
+      actions: actions + [
+        // const LanguageSwitcher(),
+        const ThemeSwitch(),
+      ],
       leading: Navigator.of(context).canPop()
           ? IconButton(
         icon: const Icon(
