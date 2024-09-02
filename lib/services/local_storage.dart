@@ -6,11 +6,12 @@ class LocalStorage {
   factory LocalStorage() => _instance;
   LocalStorage._internal();
 
-  final _storage = GetStorage();
 
   Future<void> initGetStorage() async {
     await GetStorage.init();
   }
+
+  final _storage = GetStorage();
 
   Future<void> write<T>(String key, T value) async {
     await _storage.write(key, value);

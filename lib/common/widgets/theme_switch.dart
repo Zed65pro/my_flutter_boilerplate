@@ -1,4 +1,4 @@
-import 'package:boilerplate/themes/theme_manager.dart';
+import 'package:boilerplate/services/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

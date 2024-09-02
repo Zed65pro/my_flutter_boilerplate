@@ -1,18 +1,12 @@
 import 'package:boilerplate/features/onboarding/views/onboarding_view.dart';
-import 'package:boilerplate/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import '../error/error_route.dart';
 import '../features/counter/controllers/counter_controller.dart';
 import '../features/counter/views/counter_view.dart';
 import '../features/example.form/views/form_view.dart';
 import '../features/home/views/home_view.dart';
-import '../features/weather/data/data_sources/remote_data_source.dart';
-import '../features/weather/data/repositories/weather_repository_impl.dart';
-import '../features/weather/domain/use_cases/get_current_weather.dart';
-import '../features/weather/presentation/pages/weather_page.dart';
-import '../services/api_client.dart';
+import '../features/splash/views/splash_screen.dart';
 
 Widget withProvider<T extends ChangeNotifier>(Widget page, T Function() createNotifier) {
   return ChangeNotifierProvider(
@@ -21,39 +15,49 @@ Widget withProvider<T extends ChangeNotifier>(Widget page, T Function() createNo
   );
 }
 
-
 class AppRouter {
   AppRouter._();
 
-  static const String home = '/';
+  static const String homeScreen = '/home-screen';
   static const String counter = '/counter';
   static const String myForm = '/my-form';
   static const String onboarding = '/onboarding';
-  static const String weather = '/weather';
+  static const String splashScreen = '/splash-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case home:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+      case splashScreen:
+        return _buildPageRoute(const SplashScreen(), settings);
+      case homeScreen:
+        return _buildPageRoute(const HomeView(), settings);
       case counter:
-        return MaterialPageRoute(builder: (_) => withProvider(const CounterView(), () => CounterController()));
+        return _buildPageRoute(withProvider(const CounterView(), () => CounterController()), settings);
       case myForm:
-        return MaterialPageRoute(builder: (_) => const MyFormView());
+        return _buildPageRoute(const MyFormView(), settings);
       case onboarding:
-        return MaterialPageRoute(builder: (_) => const OnboardingView());
-      case weather:
-        final apiClient = ApiClient();
-        final remoteDataSource = WeatherRemoteDataSourceImpl(apiClient: apiClient);
-        final repository = WeatherRepositoryImpl(weatherRemoteDataSource: remoteDataSource);
-        final getCurrentWeatherUseCase = GetCurrentWeatherUseCase(repository);
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => WeatherBloc(getCurrentWeatherUseCase),
-            child: const WeatherPage(),
-          ),
-        );
+        return _buildPageRoute(const OnboardingView(), settings);
       default:
-        return MaterialPageRoute(builder: (_) => const ErrorRoute());
+        return _buildPageRoute(const ErrorRoute(), settings);
     }
+  }
+
+  static PageRouteBuilder<dynamic> _buildPageRoute(Widget child, RouteSettings settings) {
+    return PageRouteBuilder(
+      settings: settings,
+      pageBuilder: (context, animation, secondaryAnimation) => child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    );
   }
 }

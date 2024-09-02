@@ -71,7 +71,7 @@ class Alerts {
     );
   }
 
-  static void showAlert(BuildContext context, {required String message, String? title, Function()? onTap, required AlertType type}) => showDialog(
+  static void showAlert(BuildContext context, {required String message, String? title, Function()? onTap, AlertType type = AlertType.NORMAL}) => showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -86,7 +86,7 @@ class Alerts {
           contentPadding: const EdgeInsets.all(24.0),
           content: SingleChildScrollView(
             child: ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: DeviceUtils.getScreenHeight(context) * 0.3),
+                constraints: BoxConstraints(maxHeight: DeviceUtils.getScreenHeight(context) * 0.4),
                 child: SelectableText(textAlign: TextAlign.center, message, style: Theme.of(context).textTheme.bodyLarge)),
           ),
         );

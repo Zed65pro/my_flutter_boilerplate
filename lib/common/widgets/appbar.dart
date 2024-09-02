@@ -1,4 +1,3 @@
-import 'package:boilerplate/common/widgets/language_switch.dart';
 import 'package:boilerplate/common/widgets/theme_switch.dart';
 import 'package:boilerplate/constants/asset_strings.dart';
 import 'package:flutter/material.dart';

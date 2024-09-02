@@ -1,6 +1,5 @@
 import 'package:boilerplate/common/widgets/appbar.dart';
 import 'package:boilerplate/constants/app_colors.dart';
-import 'package:boilerplate/routes/routes.dart';
 import 'package:boilerplate/services/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -38,7 +37,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 onPressed: () async {
                   final LocalStorage storage = LocalStorage();
                   await storage.write<bool>(AppStrings.onBoardingDone, true);
-                  Navigator.pushReplacementNamed(context, AppRouter.home);
+                  // Navigator.pushReplacementNamed(context, AppRouter.home);
                 },
                 child: Text(
                   'Get Started',

@@ -44,9 +44,9 @@ class ApiClient {
           throw Exception('"_request" has an Undefined request type');
       }
     } on NetworkException {
-      throw NetworkException('Network Error occurred');
+      throw NetworkException('Network Error occurred', null);
     } on SocketException {
-      throw NetworkException('Network Error occurred');
+      throw NetworkException('Network Error occurred', null);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout || e.type == DioExceptionType.receiveTimeout) throw TimeoutException('Time out exception', e.response?.data);
 
@@ -61,6 +61,8 @@ class ApiClient {
           throw ForbiddenException('Forbidden', e.response?.data);
         case 429:
           throw TooManyRequestsException('Too many requests', e.response?.data);
+        case 426:
+          throw UpgradeRequiredException('Upgrade Required', e.response?.data);
         case 500:
           throw InternalServerErrorException('Internal Server Error', e.response?.data);
         default:

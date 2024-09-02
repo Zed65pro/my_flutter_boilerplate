@@ -44,6 +44,10 @@ class _MyFormViewState extends State<MyFormView> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your name';
                   }
+                  if ( value.length < 8 || value.length > 20){
+                    return 'Name must be between 8 and 20 characters long';
+                  }
+
                   return null;
                 },
                 onSaved: (value) => _name = value!,
