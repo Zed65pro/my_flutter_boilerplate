@@ -71,3 +71,10 @@ class NetworkException extends ApiException {
   @override
   String toString() => 'NetworkException: $message';
 }
+
+class ValidationException extends ApiException {
+  ValidationException(super.message, super.data);
+
+  @override
+  String toString() => 'Validation Exception: $message';
+}

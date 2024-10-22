@@ -8,6 +8,8 @@ import '../controllers/counter_controller.dart';
 class CounterView extends StatelessWidget {
   const CounterView({super.key});
 
+  CounterController notifier(context) =>  Provider.of<CounterController>(context, listen: false);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +42,7 @@ class CounterView extends StatelessWidget {
   Widget _buildDecrementButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Provider.of<CounterController>(context, listen: false).decrement();
+        notifier(context).decrement();
       },
       child: Text(context.tr(AppStrings.decrement)),
     );

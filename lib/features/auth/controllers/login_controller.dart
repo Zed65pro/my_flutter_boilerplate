@@ -6,9 +6,9 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> checkAuthentication() async {
     // Simulate network call
-    await Future.delayed(const Duration(seconds: 6));
+    await Future.delayed(const Duration(seconds: 3));
     // Example: Assume user is authenticated for demonstration
-    _isAuthenticated = true;
+    _isAuthenticated = false;
     notifyListeners();
   }
 }

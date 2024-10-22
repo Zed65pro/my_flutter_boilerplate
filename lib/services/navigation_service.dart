@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class NavigationService {
   NavigationService._();
 
-  static late final GlobalKey navigatorKey;
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static BuildContext get context => navigatorKey.currentContext!;
 }

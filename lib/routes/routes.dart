@@ -1,7 +1,8 @@
-import 'package:boilerplate/features/onboarding/views/onboarding_view.dart';
+import 'package:boilerplate/features/home/views/orders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../error/error_route.dart';
+import '../features/auth/views/login.dart';
 import '../features/counter/controllers/counter_controller.dart';
 import '../features/counter/views/counter_view.dart';
 import '../features/example.form/views/form_view.dart';
@@ -23,6 +24,8 @@ class AppRouter {
   static const String myForm = '/my-form';
   static const String onboarding = '/onboarding';
   static const String splashScreen = '/splash-screen';
+  static const String loginScreen = '/login-screen';
+  static const String ordersScreen = '/orders-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -30,12 +33,14 @@ class AppRouter {
         return _buildPageRoute(const SplashScreen(), settings);
       case homeScreen:
         return _buildPageRoute(const HomeView(), settings);
+      case loginScreen:
+        return _buildPageRoute(const LoginScreen(), settings);
+      case ordersScreen:
+        return _buildPageRoute(const OrdersPage(), settings);
       case counter:
         return _buildPageRoute(withProvider(const CounterView(), () => CounterController()), settings);
       case myForm:
         return _buildPageRoute(const MyFormView(), settings);
-      case onboarding:
-        return _buildPageRoute(const OnboardingView(), settings);
       default:
         return _buildPageRoute(const ErrorRoute(), settings);
     }

@@ -54,7 +54,7 @@ class ApiClient {
 
       switch (e.response?.statusCode) {
         case 400:
-          throw BadRequestException('Bad request', e.response?.data);
+          throw ValidationException('Bad request', e.response?.data);
         case 401:
           throw UnauthorizedException('Unauthorized', e.response?.data);
         case 403:
